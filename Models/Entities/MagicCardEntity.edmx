@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TCGCardEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="CardId" />
+          </Key>
+          <Property Name="CardId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardName" Type="varchar" MaxLength="50" />
+          <Property Name="CardText" Type="varchar" MaxLength="500" />
+          <Property Name="Number" Type="nvarchar" MaxLength="10" />
+          <Property Name="SetId" Type="int" />
+          <Property Name="RarityId" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="AccessPath" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CardLog">
+          <Key>
+            <PropertyRef Name="CardLogId" />
+          </Key>
+          <Property Name="CardLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CardId" Type="int" />
+          <Property Name="UpdatedCardName" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedCardText" Type="varchar" MaxLength="500" />
+          <Property Name="UpdatedNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="UpdatedSetId" Type="int" />
+          <Property Name="UpdatedRarityId" Type="int" />
+          <Property Name="UpdatedPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="UpdatedQuantity" Type="int" />
+          <Property Name="UpdatedAccessPath" Type="nvarchar(max)" />
+          <Property Name="UpdatedTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Rarity">
+          <Key>
+            <PropertyRef Name="RarityId" />
+          </Key>
+          <Property Name="RarityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RarityName" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Set">
+          <Key>
+            <PropertyRef Name="SetId" />
+          </Key>
+          <Property Name="SetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SetName" Type="varchar" MaxLength="50" />
+          <Property Name="ReleaseDate" Type="datetime" />
+        </EntityType>
+        <Function Name="GetCardsInitialSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="searchText" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="TCGCardEntitiesStoreContainer">
+          <EntitySet Name="Card" EntityType="Self.Card" Schema="Cards" store:Type="Tables" />
+          <EntitySet Name="CardLog" EntityType="Self.CardLog" Schema="Cards" store:Type="Tables" />
+          <EntitySet Name="Rarity" EntityType="Self.Rarity" Schema="Cards" store:Type="Tables" />
+          <EntitySet Name="Set" EntityType="Self.Set" Schema="Cards" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TCGCardEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="CardId" />
+          </Key>
+          <Property Name="CardId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CardName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CardText" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Number" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SetId" Type="Int32" />
+          <Property Name="RarityId" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="AccessPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CardLog">
+          <Key>
+            <PropertyRef Name="CardLogId" />
+          </Key>
+          <Property Name="CardLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CardId" Type="Int32" />
+          <Property Name="UpdatedCardName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedCardText" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedSetId" Type="Int32" />
+          <Property Name="UpdatedRarityId" Type="Int32" />
+          <Property Name="UpdatedPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UpdatedQuantity" Type="Int32" />
+          <Property Name="UpdatedAccessPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Rarity">
+          <Key>
+            <PropertyRef Name="RarityId" />
+          </Key>
+          <Property Name="RarityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RarityName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Set">
+          <Key>
+            <PropertyRef Name="SetId" />
+          </Key>
+          <Property Name="SetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cards" EntityType="Self.Card" />
+          <EntitySet Name="CardLogs" EntityType="Self.CardLog" />
+          <EntitySet Name="Rarities" EntityType="Self.Rarity" />
+          <EntitySet Name="Sets" EntityType="Self.Set" />
+          <FunctionImport Name="GetCardsInitialSearch" ReturnType="Collection(TCGCardEntities.GetCardsInitialSearch_Result)">
+            <Parameter Name="searchText" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetCardsInitialSearch_Result">
+          <Property Type="Int32" Name="CardId" Nullable="false" />
+          <Property Type="String" Name="CardName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CardText" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Number" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SetId" Nullable="true" />
+          <Property Type="Int32" Name="RarityId" Nullable="true" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="AccessPath" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TCGCardEntitiesStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Cards">
+            <EntityTypeMapping TypeName="TCGCardEntities.Card">
+              <MappingFragment StoreEntitySet="Card">
+                <ScalarProperty Name="CardId" ColumnName="CardId" />
+                <ScalarProperty Name="CardName" ColumnName="CardName" />
+                <ScalarProperty Name="CardText" ColumnName="CardText" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="SetId" ColumnName="SetId" />
+                <ScalarProperty Name="RarityId" ColumnName="RarityId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="AccessPath" ColumnName="AccessPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CardLogs">
+            <EntityTypeMapping TypeName="TCGCardEntities.CardLog">
+              <MappingFragment StoreEntitySet="CardLog">
+                <ScalarProperty Name="CardLogId" ColumnName="CardLogId" />
+                <ScalarProperty Name="CardId" ColumnName="CardId" />
+                <ScalarProperty Name="UpdatedCardName" ColumnName="UpdatedCardName" />
+                <ScalarProperty Name="UpdatedCardText" ColumnName="UpdatedCardText" />
+                <ScalarProperty Name="UpdatedNumber" ColumnName="UpdatedNumber" />
+                <ScalarProperty Name="UpdatedSetId" ColumnName="UpdatedSetId" />
+                <ScalarProperty Name="UpdatedRarityId" ColumnName="UpdatedRarityId" />
+                <ScalarProperty Name="UpdatedPrice" ColumnName="UpdatedPrice" />
+                <ScalarProperty Name="UpdatedQuantity" ColumnName="UpdatedQuantity" />
+                <ScalarProperty Name="UpdatedAccessPath" ColumnName="UpdatedAccessPath" />
+                <ScalarProperty Name="UpdatedTime" ColumnName="UpdatedTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rarities">
+            <EntityTypeMapping TypeName="TCGCardEntities.Rarity">
+              <MappingFragment StoreEntitySet="Rarity">
+                <ScalarProperty Name="RarityId" ColumnName="RarityId" />
+                <ScalarProperty Name="RarityName" ColumnName="RarityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sets">
+            <EntityTypeMapping TypeName="TCGCardEntities.Set">
+              <MappingFragment StoreEntitySet="Set">
+                <ScalarProperty Name="SetId" ColumnName="SetId" />
+                <ScalarProperty Name="SetName" ColumnName="SetName" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCardsInitialSearch" FunctionName="TCGCardEntities.Store.GetCardsInitialSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TCGCardEntities.GetCardsInitialSearch_Result">
+                <ScalarProperty Name="CardId" ColumnName="CardId" />
+                <ScalarProperty Name="CardName" ColumnName="CardName" />
+                <ScalarProperty Name="CardText" ColumnName="CardText" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="SetId" ColumnName="SetId" />
+                <ScalarProperty Name="RarityId" ColumnName="RarityId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="AccessPath" ColumnName="AccessPath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

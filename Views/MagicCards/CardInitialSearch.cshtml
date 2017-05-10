@@ -1,0 +1,33 @@
+﻿@model List<TCGPlayerKevinMohan.Models.MagicCard>
+@{
+    if (Model.Count == 0)
+    {
+        <b style="color:red">No search results were found.</b>
+    }
+    else
+    {
+        foreach (var CardResult in Model)
+        {
+            <div id="CardInitialSearchResultMainDiv-@CardResult.CardId" style="display:inline">
+                <div id="CardInitialSearchResultImageDiv-@CardResult.CardId" style="display:inline">
+                    @{
+                        var ImgPath = CardResult.AccessPath;
+                        var startInd = ImgPath.Substring(ImgPath.IndexOf("Images"));
+                        var length = (ImgPath.Length - 7);
+                        <img id="@CardResult.CardId" style="cursor:pointer" onclick="loadDetailsView(this.id)" src="@String.Format(@"../Content/{0}", startInd, length)" height="120" width="80" />
+                    }
+                </div>
+                <div id="CardInitialSearchResultCardNameDiv-@CardResult.CardId" style="display:inline">
+                    <a id="@CardResult.CardId" onclick="loadDetailsView(this.id)" style="cursor: pointer; font-size:large">@CardResult.CardName</a>
+                </div>
+            </div>
+            <br /><br />
+        }
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        $('#universalTextBox').focus();
+    });
+</script>

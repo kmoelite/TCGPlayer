@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TCGModelStoreContainer" CdmEntityContainer="TCGEntities">
+    <EntitySetMapping Name="Cards">
+      <EntityTypeMapping TypeName="TCGModel.Card">
+        <MappingFragment StoreEntitySet="Card">
+          <ScalarProperty Name="CardId" ColumnName="CardId" />
+          <ScalarProperty Name="CardName" ColumnName="CardName" />
+          <ScalarProperty Name="CardText" ColumnName="CardText" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="SetId" ColumnName="SetId" />
+          <ScalarProperty Name="RarityId" ColumnName="RarityId" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="AccessPath" ColumnName="AccessPath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CardLogs">
+      <EntityTypeMapping TypeName="TCGModel.CardLog">
+        <MappingFragment StoreEntitySet="CardLog">
+          <ScalarProperty Name="CardLogId" ColumnName="CardLogId" />
+          <ScalarProperty Name="CardId" ColumnName="CardId" />
+          <ScalarProperty Name="UpdatedCardName" ColumnName="UpdatedCardName" />
+          <ScalarProperty Name="UpdatedCardText" ColumnName="UpdatedCardText" />
+          <ScalarProperty Name="UpdatedNumber" ColumnName="UpdatedNumber" />
+          <ScalarProperty Name="UpdatedSetId" ColumnName="UpdatedSetId" />
+          <ScalarProperty Name="UpdatedRarityId" ColumnName="UpdatedRarityId" />
+          <ScalarProperty Name="UpdatedPrice" ColumnName="UpdatedPrice" />
+          <ScalarProperty Name="UpdatedQuantity" ColumnName="UpdatedQuantity" />
+          <ScalarProperty Name="UpdatedAccessPath" ColumnName="UpdatedAccessPath" />
+          <ScalarProperty Name="UpdatedTime" ColumnName="UpdatedTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rarities">
+      <EntityTypeMapping TypeName="TCGModel.Rarity">
+        <MappingFragment StoreEntitySet="Rarity">
+          <ScalarProperty Name="RarityId" ColumnName="RarityId" />
+          <ScalarProperty Name="RarityName" ColumnName="RarityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sets">
+      <EntityTypeMapping TypeName="TCGModel.Set">
+        <MappingFragment StoreEntitySet="Set">
+          <ScalarProperty Name="SetId" ColumnName="SetId" />
+          <ScalarProperty Name="SetName" ColumnName="SetName" />
+          <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

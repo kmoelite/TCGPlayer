@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TCGCardEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Card">
+    <Key>
+      <PropertyRef Name="CardId" />
+    </Key>
+    <Property Name="CardId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CardName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CardText" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Number" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SetId" Type="Int32" />
+    <Property Name="RarityId" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="AccessPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CardLog">
+    <Key>
+      <PropertyRef Name="CardLogId" />
+    </Key>
+    <Property Name="CardLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CardId" Type="Int32" />
+    <Property Name="UpdatedCardName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedCardText" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="UpdatedNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedSetId" Type="Int32" />
+    <Property Name="UpdatedRarityId" Type="Int32" />
+    <Property Name="UpdatedPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="UpdatedQuantity" Type="Int32" />
+    <Property Name="UpdatedAccessPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Rarity">
+    <Key>
+      <PropertyRef Name="RarityId" />
+    </Key>
+    <Property Name="RarityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RarityName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Set">
+    <Key>
+      <PropertyRef Name="SetId" />
+    </Key>
+    <Property Name="SetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReleaseDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cards" EntityType="Self.Card" />
+    <EntitySet Name="CardLogs" EntityType="Self.CardLog" />
+    <EntitySet Name="Rarities" EntityType="Self.Rarity" />
+    <EntitySet Name="Sets" EntityType="Self.Set" />
+    <FunctionImport Name="GetCardsInitialSearch" ReturnType="Collection(TCGCardEntities.GetCardsInitialSearch_Result)">
+      <Parameter Name="searchText" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetCardsInitialSearch_Result">
+    <Property Type="Int32" Name="CardId" Nullable="false" />
+    <Property Type="String" Name="CardName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CardText" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Number" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="SetId" Nullable="true" />
+    <Property Type="Int32" Name="RarityId" Nullable="true" />
+    <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Quantity" Nullable="true" />
+    <Property Type="String" Name="AccessPath" Nullable="true" />
+  </ComplexType>
+</Schema>

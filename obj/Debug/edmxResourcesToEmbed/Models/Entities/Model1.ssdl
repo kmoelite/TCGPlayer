@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TCGModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Card">
+    <Key>
+      <PropertyRef Name="CardId" />
+    </Key>
+    <Property Name="CardId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CardName" Type="varchar" MaxLength="50" />
+    <Property Name="CardText" Type="varchar" MaxLength="500" />
+    <Property Name="Number" Type="nvarchar" MaxLength="10" />
+    <Property Name="SetId" Type="int" />
+    <Property Name="RarityId" Type="int" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="AccessPath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="CardLog">
+    <Key>
+      <PropertyRef Name="CardLogId" />
+    </Key>
+    <Property Name="CardLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CardId" Type="int" />
+    <Property Name="UpdatedCardName" Type="varchar" MaxLength="50" />
+    <Property Name="UpdatedCardText" Type="varchar" MaxLength="500" />
+    <Property Name="UpdatedNumber" Type="nvarchar" MaxLength="10" />
+    <Property Name="UpdatedSetId" Type="int" />
+    <Property Name="UpdatedRarityId" Type="int" />
+    <Property Name="UpdatedPrice" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="UpdatedQuantity" Type="int" />
+    <Property Name="UpdatedAccessPath" Type="nvarchar(max)" />
+    <Property Name="UpdatedTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Rarity">
+    <Key>
+      <PropertyRef Name="RarityId" />
+    </Key>
+    <Property Name="RarityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RarityName" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Set">
+    <Key>
+      <PropertyRef Name="SetId" />
+    </Key>
+    <Property Name="SetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SetName" Type="varchar" MaxLength="50" />
+    <Property Name="ReleaseDate" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="TCGModelStoreContainer">
+    <EntitySet Name="Card" EntityType="Self.Card" Schema="Cards" store:Type="Tables" />
+    <EntitySet Name="CardLog" EntityType="Self.CardLog" Schema="Cards" store:Type="Tables" />
+    <EntitySet Name="Rarity" EntityType="Self.Rarity" Schema="Cards" store:Type="Tables" />
+    <EntitySet Name="Set" EntityType="Self.Set" Schema="Cards" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

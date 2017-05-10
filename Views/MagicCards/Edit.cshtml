@@ -1,0 +1,107 @@
+﻿@model TCGPlayerKevinMohan.Models.MagicCard
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2><b>Edit Card</b></h2>
+<table style="text-align: left">
+    <tr>
+        <td class="col-md-8">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.CardId)
+
+                    <div class="form-group">
+                        <div class="control-label col-md-3"><b>Card Name</b></div>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.CardName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CardName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Number, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SetId, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.SetId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SetId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="control-label col-md-3"><b>RarityId *</b></div>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.RarityId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RarityId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="control-label col-md-3"><b>Description</b></div>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.CardText, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CardText, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="control-label col-md-3"><b>File Name</b></div>
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.AccessPath, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.AccessPath, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-offset-1">
+                        <input type="submit" value="Save" class="btn btn-warning pull-left" />
+                    </div>
+                </div>
+            }
+        </td>
+        <td class="col-md-4">
+            @{
+                var ImgPath = Model.AccessPath;
+                var startInd = ImgPath.Substring(ImgPath.IndexOf("Images"));
+                var length = (ImgPath.Length - 7);
+                <img id="@Model.CardId" src="@String.Format(@"../../Content/{0}", startInd, length)" height="300" width="200" />
+            }
+        </td>
+    </tr>
+</table>
+<br /><br />
+<p><b>*RarityId:</b> (1 = common, 2 = uncommon, 3 = rare, 4 = mythic, 5 = promo)</p>
+<div>
+    <b>@Html.ActionLink("Back to Search", "Index")</b>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

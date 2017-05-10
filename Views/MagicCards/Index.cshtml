@@ -1,0 +1,32 @@
+﻿<div id="searchMediaContainerDiv" class="container">
+    <div id="WelcomeDiv">
+        <div class="jumbotron">
+            <div style="color:red; font-size:xx-large; display:inline">CardFind</div>
+            <div style="font-size:large; font-weight:bold; display:inline">by TCGPlayer</div>
+            <h4>Search, add, and edit <b>Magic the Gathering™</b> cards!</h4>
+            <div class="pull-right">
+                <img src="~/Content/Images/MagicCardBack.jpg" height="150" width="100" />
+            </div>
+        </div>
+    </div>
+    <br /> <br />
+    <div id="SearchDiv">
+        <div id="loadingDiv" style="display:none">
+            <img src="~/Content/Images/loading.gif" height="100" width="160" />
+        </div>
+        <button input type="button" id="showAllCardsButton" class="btn btn-info" style="background-color:#5555DD" onclick="showAllCards()">Show All Cards</button>
+        <button input type="button" id="addNewCardButton" class="btn btn-info" style="background-color:#5555DD" onclick="addNewCard()">+ Add New Card</button>
+        <br /><br />
+        <div class="form-group">
+            <input autofocus class="form-control input-lg" placeholder="Enter Card Name" type="text" id="universalTextBox" style="min-width:89%;max-width:89%;display:inline">
+            <button class="btn btn-info btn-lg" type="button" data-toggle="dropdown" style="background-color:#333333" id="submitSearchQueryButton" onclick="submitTextSearch()">
+                <span class="glyphicon glyphicon-search pull-left"></span>&nbsp;Search
+            </button>
+        </div>
+    </div>
+    <div id="searchByCardNameResultDiv" style="display:none"></div>
+    <div id="detailedMediaResultsDivResult" style="display:none"></div>
+</div>
+
+<br /><br /><br /><br />
+<script src="~/Scripts/indexScript.js"></script>
